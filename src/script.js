@@ -26,6 +26,7 @@ const rules = document.getElementById('rules')
 
 //ANCHOR Canvas DOM Selector
 const canvas = document.getElementById('canvas')
+const ctx = canvas.getContext('2d')
 
 let score = 0 //Setting the score to zero from start
 
@@ -73,5 +74,14 @@ for (let i=0; i < brickRowCount; i++) { // Loop through the array row
     for(let j = 0; j < brickColumnCount; j++) { //Loop through array column
         const x = i * (brickInfo.width + brickInfo.padding) + brickInfo.offsetX // i is the row iteration for each brick
         const y = j * (brickInfo.height + brickInfo.padding) + brickInfo.offsetY // We are looping and setting/getting position of bricks
+        bricks[i][j] = {x, y, ...brickInfo} // Copy and take the array 2D and give it the values of x, y.
     } 
+};
+
+//Create and draw the ball on the canvas
+
+function drawBall() {
+    ctx.beginPath() //We are going to create a path 
+    ctx.arc(ball.x, ball.y, ball.size, 0, Math.PI * 2) //Draw an arc to build a ball
+    ctx.fillStyle = '#0095dd' // Style the ball
 }
