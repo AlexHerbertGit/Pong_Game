@@ -84,4 +84,37 @@ function drawBall() {
     ctx.beginPath() //We are going to create a path 
     ctx.arc(ball.x, ball.y, ball.size, 0, Math.PI * 2) //Draw an arc to build a ball
     ctx.fillStyle = '#0095dd' // Style the ball
+    ctx.fill()
+    ctx.closePath()
+}
+
+//Create and Draw Paddle on the canvas
+
+function drawPaddle() {
+    ctx.beginPath()
+    ctx.rect(paddle.x, paddle.y, paddle.w, paddle.h)
+    ctx.fillStyle = '#0095dd'
+    ctx.fill()
+    ctx.closePath()
+}
+
+//Draw and Design the score board
+
+function drawScore() {
+    ctx.font = '20px Arial'
+    ctx.fillText(`Score: ${score}`, canvas.width - 100, 30)
+}
+
+// Bricks Design on the canvas
+
+function drawBricks() {
+    bricks.forEach(column => {
+        column.forEach(brick => {
+            ctx.beginPath()
+            ctx.rect(brick.x, brick.y, brick.h)
+            ctx.fillStyle = brick.visible ? '#0095dd' : 'transparent' //This will be conditional.
+            ctx.fill()
+            ctx.closePath()
+        })
+    })
 }
