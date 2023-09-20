@@ -118,3 +118,44 @@ function drawBricks() {
         })
     })
 }
+
+//NOTE Move the paddle on the canvas
+
+function movePaddle() { //Every time you start playing, draw on the canvas with the function
+    paddle.x += paddle.dx // Paddle will not move until we use the kayboard inputs
+
+    if(paddle.x + paddle.w > canvas.width) { //0 from the x axis and this is the border detection rules
+        paddle.x = canvas.width - paddle.w
+    }
+
+    if(paddle.x < 0) {
+        paddle.x = 0
+    }
+}
+
+//NOTE Moving the ball on the canvas
+
+function moveBall() {
+    ball.x += ball.dx //Append the ball on the x-axis
+    ball.y += ball.dy //Append the ball on the y-axis
+
+    //Wall collision (right/left)
+
+    if(ball.x + ball.size > canvas.width || ball.x - ball.size < 0) {
+        ball.dx *= -1 // This is to reverse the ball in the opposite direction on collision 
+    }
+
+    //Wall collision (top/bottom)
+    if(ball.y + ball.size > canvas.height || ball.y - ball.size < 0) {
+        ball.dy *= -1
+    }
+
+    //Paddle collision
+    if(
+        ball.x - ball.size > paddle.x && // checking the left side of my canvas
+        ball.x + ball.size < paddle.x + paddle.w && // checking the right side of my canvas.
+        ball.y + ball.size  > paddle.y
+    ) {
+        ball.dy = -ball.speed //reverse the ball object and bounce off the wall in the opposite direction
+    }
+}
