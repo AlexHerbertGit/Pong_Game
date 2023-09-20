@@ -45,12 +45,33 @@ const ball = {
 
 //Create Paddle
 
-const paddle = {}
+const paddle = {
+    x: canvas.width / 2 -40, // We are taking half width of the paddle
+    y: canvas.height / -20, // Center this paddle in the middle of the screen
+    w: 80,
+    h: 10,
+    speed: 8,
+    dx: 0, // only moves on the X axis
+}
 
 //Create Bricks
 
-const brickInfo = {}
+const brickInfo = {
+    w: 70, //bricks will share the same properties
+    h: 20,
+    padding: 10,
+    offsetX: 45,
+    offsetY: 60,
+    visible: true
+}
 
 //Create brick array
 
-const bricks = []
+const bricks = [] // Init bricks array
+for (let i=0; i < brickRowCount; i++) { // Loop through the array row
+    bricks[i] = [] //Set the row bricks iteration to empty array
+    for(let j = 0; j < brickColumnCount; j++) { //Loop through array column
+        const x = i * (brickInfo.width + brickInfo.padding) + brickInfo.offsetX // i is the row iteration for each brick
+        const y = j * (brickInfo.height + brickInfo.padding) + brickInfo.offsetY // We are looping and setting/getting position of bricks
+    } 
+}
