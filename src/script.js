@@ -158,4 +158,27 @@ function moveBall() {
     ) {
         ball.dy = -ball.speed //reverse the ball object and bounce off the wall in the opposite direction
     }
+
+//NOTE - Brick Collision
+
+    bricks.forEach(column => { //Loop through the bricks array
+        column.forEach(brick => {
+            if(brick.visible) { // Make sure the bricks are visible
+                if(
+                    ball.x - ball.size > brick.x && //Checking the left side bricks
+                    ball.x + ball.size < brick.x + brick.w && //Checking the right side bricks
+                    ball.y + ball.size > brick.y && // Top brick checked
+                    ball.y - ball.size < brick.y + brick.h // Bottom brick side is checked
+                ) {
+                    ball.y *= -1 //Bouncr of the brick in the opposite direction
+                    brick.visible = false // Once brick has made contact with the ball, change state to transparent
+
+                    // increaseScore() this will change score values
+                }
+            }
+        })
+    })
 }
+
+
+
